@@ -17,7 +17,7 @@ see example.py
 or
 
 ```bash
-from GEOSVisualizer_mod import GSVis
+from GOESVisualizer import GSVis
 
 GSobj = GSVis('west',2021,7,21,20,-125,-117,35,45)
 GSobj.plotGS(True,'goessample.png')
