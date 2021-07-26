@@ -32,8 +32,10 @@ class GSVis(object):
             # east or west
             if eastorwest == 'east':
                 bucket_name = 'noaa-goes16'
+                self.sat = 'GOES16'
             elif eastorwest == 'west':
                 bucket_name = 'noaa-goes17'
+                self.sat = 'GOES17'
             else:
                 print('the current program only supports east or west.')
                 exit()
@@ -118,7 +120,7 @@ class GSVis(object):
         ax.coastlines(resolution='50m', color='black', linewidth = 2)
         ax.add_feature(ccrs.cartopy.feature.STATES)
         # plotting title
-        plt.title('GOES-16 True Color', loc='left', fontweight='bold', fontsize=16)
+        plt.title(self.sat + ' True Color', loc='left', fontweight='bold', fontsize=16)
         plt.title('{}'.format(self.goesdate.strftime('%d %B %Y %H:%M UTC ')), loc='right')
         # if show or save
         if is_save:
