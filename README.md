@@ -1,6 +1,6 @@
 # GOESVisualizer
 
-A simple toolbox to retrieve/visualize/save GOES16(east) and GOES17(west) data over a region of interest
+A simple toolbox to retrieve/visualize/save GOES16(east) and GOES17(west) RGB image over a region of interest
 
 ## Installation
 
