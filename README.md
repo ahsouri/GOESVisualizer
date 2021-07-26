@@ -20,10 +20,12 @@ or
 from GOESVisualizer import GSVis
 
 GSobj = GSVis('west',2021,7,21,20,-125,-117,35,45)
+# only plot
+GSobj.plotGS(False)
+# or only save
 GSobj.plotGS(True,'goessample.png')
 
 ```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
-{"mode":"full","isActive":false}
