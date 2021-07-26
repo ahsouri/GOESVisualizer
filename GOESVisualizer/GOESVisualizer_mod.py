@@ -11,7 +11,7 @@ class GSVis(object):
             '''
             Initializing GSVis with the primary inputs
             ARGS: 
-                eastorwest (char): 'east' or 'west' GEOS16
+                eastorwest (char): 'east' or 'west' GEOS16/17
                 year (int): year
                 month (int): month
                 day (int): day
@@ -77,8 +77,8 @@ class GSVis(object):
                    crs = interm.metpy.cartopy_crs
                    x = interm.x
                    y = interm.y
-            # closing the file
-            nc4_data.close()
+                # closing the file
+                nc4_data.close()
             # sorting RGB
             R = np.array(Rads[0])
             G = np.array(Rads[1])
@@ -86,7 +86,7 @@ class GSVis(object):
             # upscaling the R band
             R = cv2.resize(R, dsize=(G.shape[1], G.shape[0]), interpolation=cv2.INTER_CUBIC)
             # apply an adaptive histogram eq to enhance the image contrast
-            clahe = cv2.createCLAHE(clipLimit = 2.0, tileGridSize = (50,50))
+            clahe = cv2.createCLAHE(clipLimit = 2.0, tileGridSize = (100,100))
             R = clahe.apply(np.uint8(R*255))
             G = clahe.apply(np.uint8(G*255))
             B = clahe.apply(np.uint8(B*255))
@@ -101,13 +101,17 @@ class GSVis(object):
             self.lon1 = lon1
             self.lon2 = lon2
 
-    def plotGS(self,is_save,fpng=None):
+    def plotGS(self,is_save=False,fpng=None):
         '''
-            Plotting GOES RGB image
+        Plotting GOES RGB image
+        ARGS:
+            is_save (bool): whether we should save it as a png file (True)
+                            or plot it (False)
+            fpng (char): file.png
         ''' 
         import matplotlib.pyplot as plt
         import cartopy.crs as ccrs
-
+        import numpy as np
         # plate projection at the desired box
         pc = ccrs.PlateCarree()
         fig = plt.figure(figsize=(8, 8))
@@ -117,7 +121,8 @@ class GSVis(object):
         ax.imshow(self.RGB, origin='upper',
             extent=(self.x.min(), self.x.max(), self.y.min(), self.y.max()),
             transform=self.crs,
-            interpolation='none')
+            interpolation='none',
+        )
         # plotting costlines
         ax.coastlines(resolution='50m', color='black', linewidth = 2)
         ax.add_feature(ccrs.cartopy.feature.STATES)
@@ -131,14 +136,13 @@ class GSVis(object):
             plt.show()
 
     def get_s3_keys(self, bucket, s3_client, prefix = ''):
-        """
-         Generate the keys in an S3 bucket.
-
-         :param bucket: Name of the S3 bucket.
-         :param prefix: Only fetch keys that start with this prefix (optional).
-
-         source: https://github.com/HamedAlemo/visualize-goes16
-         """
+        '''
+        Generate the keys in an S3 bucket.
+        ARGS:
+             param bucket: Name of the S3 bucket.
+             param prefix: Only fetch keys that start with this prefix (optional).
+             source: https://github.com/HamedAlemo/visualize-goes16
+        '''
         
         kwargs = {'Bucket': bucket}
 
