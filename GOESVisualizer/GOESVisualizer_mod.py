@@ -16,6 +16,8 @@ class GSVis(object):
                 month (int): month
                 day (int): day
                 hour (int): hour
+                lon1,lon2 (float): boundary longitudes (degree) lon2>lon1
+                lat1,lat2 (float): boundary latitudes (degree) lat2>lat1
             '''   
             import xarray as xr
             import numpy as np
