@@ -8,7 +8,7 @@ with open('README.md') as f:
     readme = f.read()
 
 setup(name='GOESVisualizer',
-      version='0.0.2',
+      version='0.0.4',
       description='A simple tool to visualize GOES16/17',
       long_description=readme,
       long_description_content_type='text/markdown',

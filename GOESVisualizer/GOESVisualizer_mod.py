@@ -7,7 +7,7 @@
 
 class GSVis(object):
 
-    def __init__(self,eastorwest,year,month,day,hour,lon1,lon2,lat1,lat2):
+    def __init__(self,eastorwest,year,month,day,hour,lon1,lon2,lat1,lat2,gamma):
             '''
             Initializing GSVis with the primary inputs
             ARGS: 
@@ -18,6 +18,9 @@ class GSVis(object):
                 hour (int): hour
                 lon1,lon2 (float): boundary longitudes (degree) lon2>lon1
                 lat1,lat2 (float): boundary latitudes (degree) lat2>lat1
+                gamma (float) : a gamma correction for brightness, for dark scenes
+                                I recommend 2.5-3, for bright scenes, 1-2
+                                
             '''   
             import xarray as xr
             import numpy as np
@@ -80,9 +83,9 @@ class GSVis(object):
                 # closing the file
                 nc4_data.close()
             # sorting RGB
-            R = np.array(Rads[0])
-            G = np.array(Rads[1])
-            B = np.array(Rads[2])
+            R = np.power(np.array(Rads[0]),1/gamma)
+            G = np.power(np.array(Rads[1]),1/gamma)
+            B = np.power(np.array(Rads[2]),1/gamma)
             # upscaling the R band
             R = cv2.resize(R, dsize=(G.shape[1], G.shape[0]), interpolation=cv2.INTER_CUBIC)
             # apply an adaptive histogram eq to enhance the image contrast
