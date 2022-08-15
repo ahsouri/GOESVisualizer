@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/389640097.svg)](https://zenodo.org/badge/latestdoi/389640097)
+
 # GOESVisualizer
 
 A simple toolbox to retrieve/visualize/save GOES16(east) and GOES17(west) RGB image over a region of interest
