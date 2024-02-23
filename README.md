@@ -21,15 +21,30 @@ or
 ```bash
 from GOESVisualizer import GSVis
 
-GSobj = GSVis('west', 2021, 7, 20, 20, -125, -117, 35, 45, gamma = 1.4)
-#
-#GSobj = GSVis('east', 2021, 7, 26, 18, -110, -60, 30, 50, gamma = 3)
-# only plot
-GSobj.plotGS()
-# or only save
-GSobj.plotGS(True,'sample.png')
+GSobj = GSVis('west', 2021, 7, 20, 12, -125, -117, 35, 45, gamma = 2.5)
 
 ```
+you will have two options here, either make a snapshot for the given time or loop for days/hours
+if you just want a snapshot follow this:
+
+```bash
+GSobj.snapshot()
+
+GSobj.savepics()
+
+```
+
+if are interested in animating a series of images, follow this:
+
+```bash
+GSobj.loop(21,4)
+GSobj.savepics()
+GSobj.animate()
+
+```
+
+Pictures or animated gif will be stored under /pics/
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
