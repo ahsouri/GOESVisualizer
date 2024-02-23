@@ -24,7 +24,7 @@ from GOESVisualizer import GSVis
 GSobj = GSVis('west', 2021, 7, 20, 12, -125, -117, 35, 45, gamma = 2.5)
 
 ```
-you will have two options here, either make a snapshot for the given time or loop for days/hours
+you have two options here: either make a snapshot for the given time or loop over days/hour;
 if you just want a snapshot follow this:
 
 ```bash
@@ -34,7 +34,7 @@ GSobj.savepics()
 
 ```
 
-if are interested in animating a series of images, follow this:
+if you are interested in animating a series of images, follow this:
 
 ```bash
 GSobj.loop(21,4)
